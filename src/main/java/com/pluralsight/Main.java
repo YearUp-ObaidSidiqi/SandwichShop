@@ -1,64 +1,91 @@
 package com.pluralsight;
 
+import javax.swing.plaf.synth.SynthOptionPaneUI;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-
-        int sizeOfSandwich = 0;
+        int sandwichSize = 0;
         int age = 0;
-        boolean size = false;
+        boolean isRegularSize = false;
+        int loaded = 0;
+        boolean isLoaded = false;
+        float regularBasePrice = 5.45f;
+        float largeBasePrice = 8.95f;
+
+        System.out.println("\nWelcome to The Sandwich Shop ");
+        System.out.println("\nPlease chose what sandwich you would like today");
+        System.out.println("1: Regular: base price $" + regularBasePrice);
+        System.out.println("2: Large: base price $" + largeBasePrice);
+        System.out.println("\nPlease select 1 or 2.  ");
+        sandwichSize =scanner.nextInt();
 
 
-        System.out.println();
-        System.out.println("Welcome to The Sandwich Shop ");
-        System.out.println();
-        System.out.println("please chose what sandwich you would like today");
-        System.out.println();
-        System.out.println("1: Regular: base price $5.45");
-        System.out.println("2: Large: base price $8.95 ");
-        System.out.println();
-        System.out.println("Please select 1 or 2.  ");
-        sizeOfSandwich =scanner.nextInt();
+        System.out.println("\nWould you like your sandwich loaded? ");
+        System.out.println("\nIf Yes, please enter 1 ");
+        System.out.println("If No, please enter 2 ");
+        loaded = scanner.nextInt();
+        scanner.nextLine();
 
 
-        System.out.println("How old are you?");
+        if (loaded ==1){
+            isLoaded = true;
+        }
+        System.out.println("check point 0");
+
+        System.out.println(regularBasePrice);
+        System.out.println(largeBasePrice);
+
+        if(isLoaded){
+            regularBasePrice = (regularBasePrice + 1.00f);
+            largeBasePrice = (largeBasePrice+  1.75f) ;
+        }
+
+        System.out.println("check point 1");
+        System.out.println(regularBasePrice);
+        System.out.println(largeBasePrice);
+
+        System.out.println("\nHow old are you?");
         age = scanner.nextInt();
         scanner.nextLine();
 
-        if (sizeOfSandwich == 1){
-            size = true;
+
+        if (sandwichSize == 1){
+            isRegularSize = true;
         }
 
-        if (1<= age && age <=17){
-            if (size == true )
-            System.out.println("your total is: 4.90 ");
+
+        if (age <=17){
+            if (isRegularSize == true )
+                 System.out.printf("Your total is: $%.2f",(regularBasePrice*.90));
             else {
-                System.out.println("your total is: 8.05" );
+                System.out.printf("Your total is: $%.2f", (largeBasePrice*.90));
             }
         }
 
 
         if (18<= age && age <= 64){
-            if (size == true )
-                System.out.println("your total is: 5.45 ");
+            if (isRegularSize == true )
+                System.out.println("Your total is: " + regularBasePrice);
             else {
-                System.out.println("your total is: 8.95" );
+                System.out.println("Your total is: " + largeBasePrice );
             }
 
         }
 
         if ( age >= 65){
-            if (size == true )
-                System.out.println("your total is: 4.36 ");
+            if (isRegularSize == true )
+                System.out.printf("Your total is: $%.2f", (regularBasePrice*0.2));
             else {
-                System.out.println("your total is: 7.16" );
+                System.out.printf("Your total is: $%.2f", (largeBasePrice*0.2));
             }
 
         }
 
-
+        scanner.close();
     }
+
+
 }
